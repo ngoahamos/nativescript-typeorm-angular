@@ -1,0 +1,43 @@
+<ActionBar class="action-bar">
+        <NavigationButton android.systemIcon="ic_menu_back" text="Users" (tap)="goBack()"></NavigationButton>
+        <Label class="action-bar-title left-action" [text]="title"></Label>
+</ActionBar>
+
+<GridLayout rows="8,64,*" columns="8,*,64,8">
+        <TextField hint="Task" col="1" row="1" [(ngModel)]="task"></TextField>
+        <Button text="Save" col="2" row="1" (tap)="saveTodo()"></Button>
+    
+        <RadListView [items]="todos$" style="margin-top: 20"
+                    col="1" colSpan="2" row="2"
+                    selectionBehavior="None" 
+                    (itemSwipeProgressEnded)="onSwipeCellFinished($event)"
+                    (itemSwipeProgressStarted)="onSwipeCellStarted($event)" 
+                    (itemSwipeProgressChanged)="onCellSwiping($event)" 
+                    swipeActions="true"
+                    pullToRefresh="true" 
+                    (pullToRefreshInitiated)="userTodos($event)" #todoListView>
+
+            <ng-template tkListItemTemplate let-item="item">
+                <StackLayout orientation="vertical" style="background-color: white">
+                    <Label [class]="item.done ? 'doneTask':'taskLabel'" [text]="item.task"></Label>
+                    <StackLayout height="1" backgroundColor="silver"></StackLayout>
+                </StackLayout>
+            </ng-template>
+
+            <GridLayout *tkListItemSwipeTemplate columns="auto, *, auto">
+                <GridLayout columns="*, *" col="0" id="left-stack">
+                    <GridLayout col="0" class="markGridLayout" (tap)="onLeftSwipeClick($event)" id="btnMark">
+                        <Label text="Mark" verticalAlignment="center" horizontalAlignment="center"></Label>
+                    </GridLayout>
+                    <GridLayout col="1" class="deleteGridLayout" (tap)="onLeftSwipeClick($event)" id="btnDelete">
+                        <Label text="Delete" verticalAlignment="center" horizontalAlignment="center"></Label>
+                    </GridLayout>
+                </GridLayout>
+                <GridLayout columns="*, *" col="2" id="right-stack">
+                </GridLayout>
+            </GridLayout>
+        </RadListView>
+</GridLayout>
+
+
+

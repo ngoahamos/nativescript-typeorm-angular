@@ -1,0 +1,19 @@
+<ActionBar title="Users" class="action-bar"></ActionBar>
+
+<GridLayout rows="8,64,*" columns="8,*,64,8">
+    <TextField hint="Name" col="1" row="1" [(ngModel)]="name"></TextField>
+    <Button text="Save" col="2" row="1" (tap)="saveUser()"></Button>
+
+    <RadListView [items]="users$" style="margin-top: 20"
+                col="1" colSpan="2" row="2"
+                pullToRefresh="true" (pullToRefreshInitiated)="refreshUsers($event)"
+                selectionBehavior ="Press"
+                (itemSelected)="toTodos($event)">
+        <ng-template tkListItemTemplate let-item="item">
+            <StackLayout orientation="vertical">
+                <Label class="nameLabel" [text]="item.name"></Label>
+                <StackLayout height="1" backgroundColor="silver"></StackLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+</GridLayout>

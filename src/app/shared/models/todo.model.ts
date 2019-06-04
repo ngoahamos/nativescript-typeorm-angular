@@ -4,7 +4,7 @@ import { User } from "./user.model";
 export class Todo extends BaseEntity {
     @PrimaryGeneratedColumn()
     id?: number;
-    @Column()
+    @Column("text")
     task?: string;
     @Column()
     done?: boolean;

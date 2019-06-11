@@ -8,26 +8,22 @@ _The `typeorm/browser` package is raw ES7 code with `import/export` which will N
 
 So please make sure you are using {N} in bundle mode. if webpack is not installed, then
 
-    ```
-    tns install webpack
+```tns install webpack
+```
 
-    ```
-Install nativescript-sqlite
+Install `nativescript-sqlite`
 
-    ```
-    tns plugin add nativescript-sqlite
-    ```
+```tns plugin add nativescript-sqlite
+```
 
-Install typeorm
-    ```
-    npm install typeorm
-    ```
-    
+Install `typeorm`
+
+``` npm install typeorm
+ ```
+
 You may need to install node typings:
-
-    ```
-    npm install @types/node --save
-    ```
+```npm install @types/node --save
+```
 
 ## Demo
 ![demo](demo/demo.gif)
